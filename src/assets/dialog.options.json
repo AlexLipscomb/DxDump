@@ -1,0 +1,40 @@
+{
+    "Messages": {
+        "importMethod": {
+            "message": "Import Method",
+            "type": "question",
+            "buttons": [
+                "Request",
+                "Listen",
+                "Cancel"
+            ]
+        },
+        "sysexReceived": {
+            "message": "Sysex received!",
+            "type": "info",
+            "buttons": [
+                "Ok"
+            ]
+        }
+    },
+    "SaveDialog": {
+        "savePatch": {
+            "filters": [
+                {
+                    "name": "Formats",
+                    "extensions": ["json"]
+                }
+            ]
+        }
+    },
+    "Errors": {
+        "NoInputDevice": {
+            "Title": "No Input Device Set",
+            "Content": "Select an input device to continue."
+        },
+        "NoOutputDevice": {
+            "Title": "No Output Device Set",
+            "Content": "Select an output device to continue."
+        }
+    }
+}

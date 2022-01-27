@@ -1,0 +1,39 @@
+* {
+    font-family: sans-serif;
+    background-color: rgb(87, 82, 75);
+    color: #f7f7f7;
+}
+
+label {
+    display: inline-block;
+}
+
+.io-option {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+button {
+    background-color: rgb(30, 73, 57);
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+hr {
+    color: rgb(144, 145, 125);
+}
+
+.param-container {
+    border: 3px solid rgb(144, 145, 125);
+    margin: 10px;
+    padding: 20px;
+    width: auto;
+    box-shadow: 10px #00000000;
+}
+
+.param-subcontainer {
+    border: 3px solid rgb(144, 145, 125);
+    margin: 5px;
+    padding: 20px;
+    width: auto;
+}

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module"> require('../scripts/DX21Editor.js'); </script>
+    <link rel="stylesheet" href="../styles/styles.css">
+    <title>DX21 Editor</title>
+</head>
+<body>
+    <select id="voice-select"></select>
+    <div id="voice-container" class="param-container">
+        <div id="voice-name-container">
+            <label for="voice-name">Voice Name</label>
+            <input type="text" maxlength="10" id="voice-name" name="voice-name" class="sysexparam">
+        </div>
+        <hr>
+        <div id="transpose-container" class="param-subcontainer">
+            <label for="transpose">Transpose</label>
+            <input type="range" min="0" max="48" id="transpose" name="transpose" value="24" class="sysexparam">
+        </div>
+        <hr>
+        <div id="algorithm-container" class="param-subcontainer">
+            <div id="feedback-level-container">
+                <label for="feedback-level">Feedback</label>
+                <input type="range" min="0" max="7" id="feedback-level" name="feedback-level" value="0" class="sysexparam">
+            </div>
+            <label for="algorithm-options-container">Algorithm</label>
+            <div id="algorithm-options-container">
+                <span>
+                    <label for="algorithm-0">1</label>
+                    <input type="radio" id="algorithm-0" name="algorithm-options" value="0" class="sysexparam">
+                </span>
+                <span>
+                    <label for="algorithm-1">2</label>
+                    <input type="radio" id="algorithm-1" name="algorithm-options" value="1" class="sysexparam">
+                </span>
+                <span>
+                    <label for="algorithm-2">3</label>
+                    <input type="radio" id="algorithm-2" name="algorithm-options" value="2" class="sysexparam">
+                </span>
+                <span>
+                    <label for="algorithm-3">4</label>
+                    <input type="radio" id="algorithm-3" name="algorithm-options" value="3" class="sysexparam">
+                </span>
+                <span>
+                    <label for="algorithm-4">5</label>
+                    <input type="radio" id="algorithm-4" name="algorithm-options" value="4" class="sysexparam">
+                </span>
+                <span>
+                    <label for="algorithm-5">6</label>
+                    <input type="radio" id="algorithm-5" name="algorithm-options" value="5" class="sysexparam">
+                </span>
+                <span>
+                    <label for="algorithm-6">7</label>
+                    <input type="radio" id="algorithm-6" name="algorithm-options" value="6" class="sysexparam">
+                </span>
+                <span>
+                    <label for="algorithm-7">8</label>
+                    <input type="radio" id="algorithm-7" name="algorithm-options" value="7" class="sysexparam">
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div id="op-container" class="param-container">
+            <label for="op-container">Operators</label>
+            <select id="operator-select"></select>
+            <div id="op-oscillator-frequency-container">
+                <label for="op-oscilaltor-frequency">Oscillator Frequency</label>
+                <input type="range" min="0" max="63" id="op-oscillator-frequency" name="oscillator-frequency" value="2" class="sysexparam">
+            </div>
+            <div id="op-detune-container">
+                <label for="op-detune">Detune</label>
+                <input type="range" min="0" max="7" id="op-detune" name="op-detune" value="3" class="sysexparam">
+            </div>
+            <div id="op-output-level-container">
+                <label for="op-output-level">Output Level</label>
+                <input type="range" min="0" max="99" id="op-output-level" name="output-level" value="0" class="sysexparam">
+            </div>
+            <div id="amplitude-envelope-container" class="param-subcontainer">
+                <div id="op-attack-rate-container">
+                    <label for="op-attack-rate">Attack Rate</label>
+                    <input type="range" min="0" max="31" id="op-attack-rate" name="attack-rate" value="0" class="sysexparam">
+                </div>
+                <div id="op-decay-1-rate-container">
+                    <label for="op-decay-1-rate">Decay 1 Rate</label>
+                    <input type="range" min="0" max="31" id="op-decay-1-rate" name="decay-1-rate" value="0" class="sysexparam">
+                </div>
+                <div id="op-decay-1-level-container">
+                    <label for="op-decay-1-level">Decay 1 Level</label>
+                    <input type="range" min="0" max="15" id="op-decay-1-level" name="decay-1-level" value="0" class="sysexparam">
+                </div>
+                <div id="op-decay-2-rate-container">
+                    <label for="op-decay-2-rate">Decay 2 Rate</label>
+                    <input type="range" min="0" max="31" id="op-decay-2-rate" name="decay-2-rate" value="0" class="sysexparam">
+                </div>
+                <div id="op-release-rate-container">
+                    <label for="op-release-rate">Release Rate</label>
+                    <input type="range" min="0" max="15" id="op-release-rate" name="release-rate" value="0" class="sysexparam">
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div id="lfo-container">
+            <label for="lfo-container">LFO</label>
+            <div id="lfo-wave-container">
+                <label for="lfo-"></label>
+            </div>
+            <div id="lfo-speed-container">
+                <label for="lfo-"></label>
+            </div>
+            <div id="lfo-delay-container">
+                <label for="lfo-"></label>
+            </div>
+            <div id="lfo-sync-container">
+                <label for="lfo-"></label>
+            </div>
+            <div id="pitch-modulation-depth-container">
+
+            </div>
+            <div id=""
+        </div>
+        <hr>
+        <div id="pitch-modulation-container"></div>
+        <div id="sensitivity-container"></div>
+    </div>
+    <hr>
+    <div>
+        <button id="load">Load</button>
+        <button id="save">Save</button>
+    </div>
+
+</body>
+</html>
