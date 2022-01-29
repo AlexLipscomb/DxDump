@@ -24,7 +24,7 @@ $('#import').on('click', () => {
 
 ipcRenderer.on('refresh-midi-io', (event, devices: string) => {
     getInputDevices((parse(devices) as MidiDeviceList).inputs);
-    getOutputDevices((parse(devices)as MidiDeviceList).outputs);
+    getOutputDevices((parse(devices) as MidiDeviceList).outputs);
 });
 
 $(midiInputs).on('change', (e) => {

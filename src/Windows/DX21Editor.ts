@@ -1,8 +1,8 @@
 import BaseWindow from './BaseWindow';
 import {BrowserWindow, dialog, ipcMain} from 'electron';
 import path from 'path';
-import DX21 from '../DX/DX21';
-import {DX21Voice} from '../DX/DX21.types';
+import fs from 'fs';
+import {DX21Voice, parseSysex, resolveSysex} from 'dxex';
 
 
 /**
@@ -67,16 +67,11 @@ export default class DX21EditorWindow extends BaseWindow {
             }],
         }).then((result) => {
             if (!result.canceled) {
-                const dx21 = new DX21();
+                fs.readFile(result.filePaths[0], (err, data) => {
+                    const sysexData = [...new Int32Array(data)];
 
-                dx21.read(result.filePaths[0]).then(() => {
-                    dx21.parse().catch((reason: Error) => {
-                        dialog.showErrorBox('Parse Error', reason.message);
-                    });
-                }).then(() => {
-                    this.window?.webContents.send('sysex', dx21.voices);
-                }).catch((reason: Error) => {
-                    dialog.showErrorBox('Error', reason.message);
+                    const parsedSysexData = parseSysex(sysexData);
+                    this.window?.webContents.send('sysex', parsedSysexData);
                 });
             }
         });
@@ -95,14 +90,20 @@ export default class DX21EditorWindow extends BaseWindow {
             }],
         }).then((result) => {
             if (!result.canceled) {
-                const dx21 = new DX21();
-                dx21.resolve(voices).then(() => {
-                    dx21.write(result.filePath as string).then(() => {
-                        console.log('done writing');
+                const resolvedSysex = resolveSysex(voices, {mode: 'bulk32'});
+                const buff = new ArrayBuffer(4104);
+                const view = new Uint8Array(buff);
+
+                for (let i = 0; i < buff.byteLength; i++) {
+                    view[i] = resolvedSysex[i];
+                }
+
+                fs.writeFile(
+                    result.filePath as string, view, () => {
+
                     });
-                }).catch((reason) => {
-                    dialog.showErrorBox('Error', reason.message);
-                });
+
+                console.log(resolvedSysex);
             }
         }).catch((reason: Error) => {
             dialog.showErrorBox('Error', reason.message);

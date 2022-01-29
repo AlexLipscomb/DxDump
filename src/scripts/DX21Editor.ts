@@ -1,7 +1,7 @@
+// eslint-disable-next-line max-len
+import {DX21LFO, DX21Op, DX21Performance, DX21PitchEnvelopeGenerator, DX21Voice} from 'dxex';
 import {ipcRenderer} from 'electron';
 import $ from 'jquery';
-// eslint-disable-next-line max-len
-import {DX21LFO, DX21Op, DX21Performance, DX21PitchEnvelopeGenerator, DX21Voice} from '../DX/DX21.types';
 
 
 let selectedVoice: number = 0;
@@ -38,6 +38,7 @@ $('.sysexparam').on('change', (e) => {
                 match.length + 1),
             '-') as keyof DX21Op;
 
+        // @ts-ignore
         voices[selectedVoice].op[selectedOperator][key] = value as number;
         break;
     case 'perf':
@@ -168,11 +169,11 @@ function setVoiceNames(sysex: DX21Voice[]): void {
 }
 // eslint-disable-next-line require-jsdoc
 function setOpParams(op: number, sysex: DX21Voice): void {
-    $('#op-attack-rate').val(sysex.op[op].attackRate);
-    $('#op-decay-1-rate').val(sysex.op[op].decay1Rate);
-    $('#op-decay-2-rate').val(sysex.op[op].decay2Rate);
-    $('#op-decay-1-level').val(sysex.op[op].decay1Level);
-    $('#op-release-rate').val(sysex.op[op].releaseRate);
+    $('#op-attack-rate').val(sysex.op[op].envelopeGenerator.attackRate);
+    $('#op-decay-1-rate').val(sysex.op[op].envelopeGenerator.decay1Rate);
+    $('#op-decay-2-rate').val(sysex.op[op].envelopeGenerator.decay2Rate);
+    $('#op-decay-1-level').val(sysex.op[op].envelopeGenerator.decay1Level);
+    $('#op-release-rate').val(sysex.op[op].envelopeGenerator.releaseRate);
     $('#op-output-level').val(sysex.op[op].outputLevel);
     $('#op-oscillator-frequency').val(sysex.op[op].oscillatorFrequency);
     $('#op-detune').val(sysex.op[op].detune);

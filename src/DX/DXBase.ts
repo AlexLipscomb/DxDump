@@ -1,5 +1,5 @@
+import {DX21Voice} from 'dxex';
 import fs from 'fs';
-import {DX21Voice} from './DX21.types';
 
 
 /**
