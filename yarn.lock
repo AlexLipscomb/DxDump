@@ -1093,10 +1093,10 @@ duplexer3@^0.1.4:
   resolved "https://registry.npmjs.org/duplexer3/-/duplexer3-0.1.4.tgz"
   integrity sha1-7gHdHKwO08vH/b6jfcCo8c4ALOI=
 
-dxex@^0.0.8:
-  version "0.0.8"
-  resolved "https://registry.yarnpkg.com/dxex/-/dxex-0.0.8.tgz#e0250f56736d2f30ecc428e9317650c6b90a1ff5"
-  integrity sha512-HTdVkBCqIFbX8z+A1aqMPaK9g4jPMaTazAvPxQ4LMcgKRxHw3jkR+xKItBMXoKZa5LfZeHD+1uPpap4rQ0Exjg==
+dxex@^0.0.10:
+  version "0.0.10"
+  resolved "https://registry.yarnpkg.com/dxex/-/dxex-0.0.10.tgz#3e3b0dc54ea44dc3c3b6a92220f2963f86523224"
+  integrity sha512-RVOAIjw3CaghnmnyC6huW5S3gHcDRWu0+vR6piuB9v2h6QftKguNlxZm8i+tGh8JqpPwC6lUXfoO07ZI0dnIag==
 
 ejs@^3.1.6:
   version "3.1.6"

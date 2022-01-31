@@ -90,7 +90,7 @@ export default class DX21EditorWindow extends BaseWindow {
             }],
         }).then((result) => {
             if (!result.canceled) {
-                const resolvedSysex = resolveSysex(voices, {mode: 'bulk32'});
+                const resolvedSysex = resolveSysex(voices, {synthType: 'dx21'});
                 const buff = new ArrayBuffer(4104);
                 const view = new Uint8Array(buff);
 
@@ -102,8 +102,6 @@ export default class DX21EditorWindow extends BaseWindow {
                     result.filePath as string, view, () => {
 
                     });
-
-                console.log(resolvedSysex);
             }
         }).catch((reason: Error) => {
             dialog.showErrorBox('Error', reason.message);

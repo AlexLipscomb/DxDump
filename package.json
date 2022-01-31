@@ -15,7 +15,7 @@
     "dist": "build"
   },
   "dependencies": {
-    "dxex": "^0.0.8",
+    "dxex": "^0.0.10",
     "electron": "^16.0.7",
     "flatted": "^3.2.4",
     "jquery": "^3.6.0",
