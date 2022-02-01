@@ -1,7 +1,7 @@
 * {
     font-family: sans-serif;
-    background-color: rgb(87, 82, 75);
-    color: #f7f7f7;
+    background-color: #1e1a15;
+    color: #dbdbdb;
 }
 
 label {
@@ -24,7 +24,7 @@ hr {
 }
 
 .param-container {
-    border: 3px solid rgb(144, 145, 125);
+    border: 3px solid #3b3324;;
     margin: 10px;
     padding: 20px;
     width: auto;
@@ -32,7 +32,7 @@ hr {
 }
 
 .param-subcontainer {
-    border: 3px solid rgb(144, 145, 125);
+    border: 3px solid #3b3324;
     margin: 5px;
     padding: 20px;
     width: auto;

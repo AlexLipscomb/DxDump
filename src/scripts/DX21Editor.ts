@@ -89,6 +89,7 @@ $('.sysexparam').on('change', (e) => {
 $(window).on('load', () => {
     createVoiceOptions(numVoices);
     createOperatorOptions(numOperators);
+    requestInitPatch();
 });
 
 /**
@@ -137,11 +138,16 @@ $('#operator-select').on('change', (e) => {
 
 
 ipcRenderer.on('sysex', (event, args) => {
-    voices = args;
+    loadVoices(args);
+});
+
+// eslint-disable-next-line require-jsdoc
+function loadVoices(sysex: DX21Voice[]) {
+    voices = sysex;
     setVoiceNames(voices);
     setVoiceParams(selectedVoice, voices);
     setOpParams(selectedOperator, voices[selectedVoice]);
-});
+}
 
 /**
  * Set the UI values from a patch.
@@ -149,13 +155,16 @@ ipcRenderer.on('sysex', (event, args) => {
  * @param {DX21Voice} sysex
  */
 function setVoiceParams(voice: number, sysex: DX21Voice[]) {
-    const selectedSysexVoice = sysex[voice];
+    const selectedSysexVoice: DX21Voice = sysex[voice];
+
     $('#voice-name').val(`${selectedSysexVoice.voiceName}`);
     $('#transpode').val(`${selectedSysexVoice.transpose}`);
     $('#feedback-level').val(`${selectedSysexVoice.feedbackLevel}`);
     $(`#algorithm-${selectedSysexVoice.algorithm}`)
         .prop('checked', true);
     setLfoParams(selectedSysexVoice);
+    setPEGParams(selectedSysexVoice);
+    setPerformanceParams(selectedSysexVoice);
 }
 
 /**
@@ -185,8 +194,51 @@ function setLfoParams(sysex: DX21Voice): void {
     $('#lfo-speed').val(sysex.lfo.lfoSpeed);
     $('#lfo-delay').val(sysex.lfo.lfoDelay);
     $('#lfo-sync').val(sysex.lfo.lfoSync);
+    $('#pitch-modulation-depth')
+        .val(sysex.lfo.pitchModulationDepth);
+    $('#amplitude-modulation-depth')
+        .val(sysex.lfo.amplitudeModulationDepth);
+    $('#pitch-modulation-sensitivity')
+        .val(sysex.lfo.pitchModulationSensitivity);
+    $('#amplitude-modulation-sensitivity')
+        .val(sysex.lfo.amplitudeModulationSensitivity);
 }
 
+// eslint-disable-next-line require-jsdoc
+function setPerformanceParams(sysex: DX21Voice): void {
+    setModWheelParams(sysex);
+    setBreathControlParams(sysex);
+}
+
+// eslint-disable-next-line require-jsdoc
+function setModWheelParams(sysex: DX21Voice): void {
+    $('#modulation-wheel-pitch-modulation-range')
+        .val(sysex.performance.modulationWheelPitchModulationRange);
+    $('#modulation-wheel-amplitude-modulation-range')
+        .val(sysex.performance.modulationWheelAmplitudeModulationRange);
+}
+
+// eslint-disable-next-line require-jsdoc
+function setBreathControlParams(sysex: DX21Voice): void {
+    $('#breath-control-pitch-modulation-range')
+        .val(sysex.performance.breathControlPitchModulationRange);
+    $('#breath-control-amplitude-modulation-range')
+        .val(sysex.performance.breathControlAmplitudeModulationRange);
+    $('#breath-control-pitch-bias-range')
+        .val(sysex.performance.breathControlPitchBiasRange);
+    $('#breath-control-eg-bias-range')
+        .val(sysex.performance.breathControlEgBiasRange);
+}
+
+// eslint-disable-next-line require-jsdoc
+function setPEGParams(sysex: DX21Voice): void {
+    $('#pitch-eg-rate-1').val(sysex.pitchEnvelopeGenerator.pitchEgRate1);
+    $('#pitch-eg-rate-2').val(sysex.pitchEnvelopeGenerator.pitchEgRate2);
+    $('#pitch-eg-rate-3').val(sysex.pitchEnvelopeGenerator.pitchEgRate3);
+    $('#pitch-eg-level-1').val(sysex.pitchEnvelopeGenerator.pitchEgLevel1);
+    $('#pitch-eg-level-2').val(sysex.pitchEnvelopeGenerator.pitchEgLevel2);
+    $('#pitch-eg-level-3').val(sysex.pitchEnvelopeGenerator.pitchEgLevel3);
+}
 
 // ? Experimental
 // eslint-disable-next-line require-jsdoc
@@ -241,4 +293,17 @@ $('#save').on('click', () => {
         type: 'dx21',
         data: voices,
     });
+});
+
+$('#reset-all').on('click', () => {
+    requestInitPatch();
+});
+
+// eslint-disable-next-line require-jsdoc
+function requestInitPatch() {
+    ipcRenderer.send('request-init-patch');
+}
+
+ipcRenderer.on('request-init-patch', (event, args) => {
+    loadVoices(args as DX21Voice[]);
 });

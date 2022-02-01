@@ -9,23 +9,42 @@
     <title>DX21 Editor</title>
 </head>
 <body>
+    <div id="live-update-container">
+        <div>
+            <label for="live-update">Live Update</label>
+        </div>
+        <div>
+            <input type="checkbox" id="live-update"> <!-- Live updating to the dx synth, if connected.-->
+        </div>
+    </div>
+
+    <div>
+        <button id="reset-all" name="reset-all">Reset All</button>
+        <button id="reset-voice" name="reset-voice">Reset Voice</button>
+    </div>
+
     <select id="voice-select"></select>
     <div id="voice-container" class="param-container">
         <div id="voice-name-container">
             <label for="voice-name">Voice Name</label>
             <input type="text" maxlength="10" id="voice-name" name="voice-name" class="sysexparam">
         </div>
+
         <hr>
+
         <div id="transpose-container" class="param-subcontainer">
             <label for="transpose">Transpose</label>
             <input type="range" min="0" max="48" id="transpose" name="transpose" value="24" class="sysexparam">
         </div>
+
         <hr>
+
         <div id="algorithm-container" class="param-subcontainer">
             <div id="feedback-level-container">
                 <label for="feedback-level">Feedback</label>
                 <input type="range" min="0" max="7" id="feedback-level" name="feedback-level" value="0" class="sysexparam">
             </div>
+
             <label for="algorithm-options-container">Algorithm</label>
             <div id="algorithm-options-container">
                 <span>
@@ -62,68 +81,174 @@
                 </div>
             </div>
         </div>
+
         <hr>
+
         <div id="op-container" class="param-container">
             <label for="op-container">Operators</label>
             <select id="operator-select"></select>
+
             <div id="op-oscillator-frequency-container">
                 <label for="op-oscilaltor-frequency">Oscillator Frequency</label>
                 <input type="range" min="0" max="63" id="op-oscillator-frequency" name="oscillator-frequency" value="2" class="sysexparam">
             </div>
+
             <div id="op-detune-container">
                 <label for="op-detune">Detune</label>
                 <input type="range" min="0" max="7" id="op-detune" name="op-detune" value="3" class="sysexparam">
             </div>
+
             <div id="op-output-level-container">
                 <label for="op-output-level">Output Level</label>
                 <input type="range" min="0" max="99" id="op-output-level" name="output-level" value="0" class="sysexparam">
             </div>
+
             <div id="amplitude-envelope-container" class="param-subcontainer">
                 <div id="op-attack-rate-container">
                     <label for="op-attack-rate">Attack Rate</label>
                     <input type="range" min="0" max="31" id="op-attack-rate" name="attack-rate" value="0" class="sysexparam">
                 </div>
+
                 <div id="op-decay-1-rate-container">
                     <label for="op-decay-1-rate">Decay 1 Rate</label>
                     <input type="range" min="0" max="31" id="op-decay-1-rate" name="decay-1-rate" value="0" class="sysexparam">
                 </div>
+
                 <div id="op-decay-1-level-container">
                     <label for="op-decay-1-level">Decay 1 Level</label>
                     <input type="range" min="0" max="15" id="op-decay-1-level" name="decay-1-level" value="0" class="sysexparam">
                 </div>
+
                 <div id="op-decay-2-rate-container">
                     <label for="op-decay-2-rate">Decay 2 Rate</label>
                     <input type="range" min="0" max="31" id="op-decay-2-rate" name="decay-2-rate" value="0" class="sysexparam">
                 </div>
+
                 <div id="op-release-rate-container">
                     <label for="op-release-rate">Release Rate</label>
                     <input type="range" min="0" max="15" id="op-release-rate" name="release-rate" value="0" class="sysexparam">
                 </div>
             </div>
         </div>
+
         <hr>
-        <div id="lfo-container">
+
+        <div id="lfo-container" class="param-container">
             <label for="lfo-container">LFO</label>
             <div id="lfo-wave-container">
-                <label for="lfo-"></label>
+                <label for="lfo-wave">Wave</label>
+                <input type="range" id="lfo-wave" name="lfo-wave" min="0" max="3" value="0" class="sysexparam">
             </div>
-            <div id="lfo-speed-container">
-                <label for="lfo-"></label>
-            </div>
-            <div id="lfo-delay-container">
-                <label for="lfo-"></label>
-            </div>
-            <div id="lfo-sync-container">
-                <label for="lfo-"></label>
-            </div>
-            <div id="pitch-modulation-depth-container">
 
+            <div id="lfo-speed-container">
+                <label for="lfo-speed">Speed</label>
+                <input type="range" id="lfo-speed" name="lfo-speed" min="0" max="99" value="0" class="sysexparam">
             </div>
-            <div id=""
+
+            <div id="lfo-delay-container">
+                <label for="lfo-delay">Delay</label>
+                <input type="range" id="lfo-delay" name="lfo-delay" min="0" max="99" value="0" class="sysexparam">
+            </div>
+
+            <div id="lfo-sync-container">
+                <label for="lfo-sync">Sync</label>
+                <input type="checkbox" id="lfo-sync" name="lfo-sync" value="0">
+            </div>
+
+            <div id="pitch-modulation-depth-container">
+                <label for="pitch-modulation-depth">Pitch Mod Depth</label>
+                <input type="range" id="pitch-modulation-depth" name="pitch-modulation-depth" min="0" max="99" value="0" class="sysexparam">
+            </div>
+
+            <div id="amplitude-modulation-depth-container">
+                <label for="amplitude-modulation-depth">Amp Mod Depth</label>
+                <input type="range" id="amplitude-modulation-depth" name="amplitude-modulation-depth" min="0" max="99" value="0" class="sysexparam">
+            </div>
+
+            <div id="pitch-modulation-sensitivity">
+                <label for="pitch-modulation-sensitivity">Pitch Mod Sensitivity</label>
+                <input type="range" id="pitch-modulation-sensitivity" name="pitch-modulation-sensitivity" min="0" max="7" value="0" class="sysexparam">
+            </div>
+
+            <div id="amplitude-modulation-sensitivity">
+                <label for="amplitude-modulation-sensitivity">Amp Mod Sensitivity</label>
+                <input type="range" id="amplitude-modulation-sensitivity" name="amplitude-modulation-sensitivity" min="0" max="7" value="0" class="sysexparam">
+            </div>
         </div>
-        <hr>
-        <div id="pitch-modulation-container"></div>
-        <div id="sensitivity-container"></div>
+
+        <div id="pitch-enveloper-generator-container" class="param-container">
+            <label for="pitch-envelope-generator-container">Pitch Envelope Generator</label>
+
+            <div id="pitch-eg-rate-1-container">
+                <label for="pitch-eg-rate-1">PEG Rate 1</label>
+                <input type="range" id="pitch-eg-rate-1" name="pitch-eg-rate-1" min="0" max="99" value="0" class="sysexparam">
+            </div>
+
+            <div id="pitch-eg-rate-2-container">
+                <label for="pitch-eg-rate-2">PEG Rate 2</label>
+                <input type="range" id="pitch-eg-rate-2" name="pitch-eg-rate-2" min="0" max="99" value="0" class="sysexparam">
+            </div>
+
+            <div id="pitch-eg-rate-3-container">
+                <label for="pitch-eg-rate-3">PEG Rate 3</label>
+                <input type="range" id="pitch-eg-rate-3" name="pitch-eg-rate-3" min="0" max="99" value="0" class="sysexparam">
+            </div>
+
+            <div id="pitch-eg-level-1-container">
+                <label for="pitch-eg-level-1">PEG Level 1</label>
+                <input type="range" id="pitch-eg-level-1" name="pitch-eg-level-1" min="0" max="99" value="0" class="sysexparam">
+            </div>
+
+            <div id="pitch-eg-level-2-container">
+                <label for="pitch-eg-level-2">PEG Level 2</label>
+                <input type="range" id="pitch-eg-level-2" name="pitch-eg-level-2" min="0" max="99" value="0" class="sysexparam">
+            </div>
+
+            <div id="pitch-eg-level-3-container">
+                <label for="pitch-eg-level-3">PEG Level 3</label>
+                <input type="range" id="pitch-eg-level-3" name="pitch-eg-level-3" min="0" max="99" value="0" class="sysexparam">
+            </div>
+        </div>
+        <div id="performance-container" class="param-container">
+            <div id="modulation-wheel-container" class="param-subcontainer">
+                <label for="modulation-wheel-container">Mod Wheel</label>
+
+                <div id="modulation-wheel-pitch-modulation-range-container">
+                    <label for="modulation-wheel-pitch-modulation-range">Pitch Mod Range</label>
+                    <input type="range" id="modulation-wheel-pitch-modulation-range" name="modulation-wheel-pitch-modulation-range" min="0" max="99" value="0" class="sysexparam">
+                </div>
+
+                <div id="modulation-wheel-amplitude-modulation-range-container">
+                    <label for="modulation-wheel-amplitude-modulation-range">Amp Mod Range</label>
+                    <input type="range" id="modulation-wheel-amplitude-modulation-range" name="modulation-wheel-amplitude-modulation-range" min="0" max="99" value="0" class="sysexparam">
+                </div>
+            </div>
+
+            <div id="breath-control-container" class="param-subcontainer">
+                <label for="breath-control-container">Breath Control</label>
+
+                <div id="breath-control-pitch-modulation-range-container">
+                    <label for="breath-control-pitch-modulation-range">Pitch Mod Range</label>
+                    <input type="range" id="breath-control-pitch-modulation-range" name="breath-control-pitch-modulation-range" min="0" max="99" value="0" class="sysexparam">
+                </div>
+
+                <div id="breath-control-amplitude-modulation-range">
+                    <label for="breath-control-amplitude-modulation-range">Amp Mod Range</label>
+                    <input type="range" id="breath-control-amplitude-modulation-range" name="breath-control-amplitude-modulation-range" min="0" max="99" value="0" class="sysexparam">
+                </div>
+
+                <div id="breath-control-pitch-bias-range-container">
+                    <label for="breath-control-pitch-bias-range">Pitch Bias Range</label>
+                    <input type="range" id="breath-control-pitch-bias-range" name="breath-control-pitch-bias-range" min="0" max="99" value="0" class="sysexparam">
+                </div>
+
+                <div id="breath-control-eg-bias-range-container">
+                    <label for="breath-control-eg-bias-range">EG Bias Range</label>
+                    <input type="range" id="breath-control-eg-bias-range" name="breath-control-eg-bias-range" min="0" max="99" value="0" class="sysexparam">
+                </div>
+            </div>
+        </div>
+
     </div>
     <hr>
     <div>

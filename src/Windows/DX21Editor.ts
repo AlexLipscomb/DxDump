@@ -27,6 +27,11 @@ export default class DX21EditorWindow extends BaseWindow {
                 this.saveSysex(args.data);
             }
         });
+
+        ipcMain.on('request-init-patch', (event, args) => {
+            const data = require('../assets/initvoice.json');
+            event.sender.send('request-init-patch', data);
+        });
     }
 
     /**
